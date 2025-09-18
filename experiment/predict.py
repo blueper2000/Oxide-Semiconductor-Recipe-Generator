@@ -204,10 +204,10 @@ class RAGRecipePredictor(RecipePredictor):
         
         # 데이터셋 이름 변경
         if retrieval_split == "all":
-            retrieval_set = load_dataset("iknow-lab/oxidesc-recipe-embeddings", token= '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')
+            retrieval_set = _load_retrieval_set()
             self.retrieval_set = concatenate_datasets(retrieval_set.values())
         else:
-            self.retrieval_set = load_dataset("iknow-lab/oxidesc-recipe_embeddings", split="train", token= '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')
+            self.retrieval_set =_load_retrieval_set()
         
         self.rag_topk = rag_topk
         # assert self.rag_topk > 0, "RAG topk must be greater than 0"
