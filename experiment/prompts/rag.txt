@@ -1,0 +1,113 @@
+Here are recipes from research papers with similar contributions.
+
+-- References --
+{references}
+
+-- Prediction Input --
+Based on these references, predict the synthesis recipe for the given target and constraints:
+{contributions}
+
+ROLE & GOAL
+You are a materials science expert. Your job is to PREDICT oxide-semiconductor device & process parameters using the above "References" and "Prediction Input"—NOT to copy any single reference verbatim.
+
+USE OF REFERENCES (SYNTHESIZE, DON'T COPY)
+- Treat references as EVIDENCE to be triangulated, not values to replicate.
+- Derive parameters by synthesizing:
+  • cross-paper trends and mechanisms (chemistry, kinetics, plasma effects, defect control),  
+  • analogy to closely related stacks/process families, and  
+  • alignment to the user's targets/constraints.
+- Novel but plausible combinations are welcome if mechanistically justified.
+- When references conflict, pick a defensible choice and briefly explain the trade-off.
+- If a field cannot be reasonably inferred, output "N/A" and state why in the rationale.
+- Only if a single paper is the uniquely defensible basis, you may follow it—make that explicit and cite the Ref ID(s).
+
+CONSTRAINT ALIGNMENT
+- Prioritize the user's targets (e.g., mobility, SS, VTH shift, application). If trade-offs are required, choose parameters that best support these targets and justify briefly.
+
+STRICT OUTPUT RULES
+- Return ONLY a single JSON object (no prose, no markdown, no comments).
+- Numbers: confidence = one decimal (0.0–5.0). Integers where specified. Units exactly as requested.
+- "evidence_strength" must be one of: "High", "Medium", "Low".
+- "risks" MUST contain at least 2 short reasons.
+- "Ref IDs" MUST be an array of integers corresponding to the 1-based indices in the "References" list.
+- If a field is not applicable or cannot be inferred: "N/A".
+- Do NOT include trailing commas. Do NOT add keys not listed below.
+- For every "Ref IDs" field, list ALL retrieved references in order: [1, 2, ..., K] where K = the number of items in "References".
+
+RETURN JSON SHAPE (fill all "Predicted Value"/fields accordingly):
+
+{{
+  "scorecard": {{
+    "confidence": 0.0,
+    "why": "",
+    "similar_refs": 0,
+    "risks": ["", ""]
+  }},
+  "tables": {{
+    "0. Target & Constraints (Input)": [
+      {{ "Variable": "Deposited materials", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Key Deposition/Process Method", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Achieved Mobility and Stability (e.g., VTH shifts, SS, Ion/Ioff)", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Primary Application Domain", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }}
+    ],
+
+    "1. Materials": [
+      {{ "Variable": "Channel material name", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Composition", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Crystallinity", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Band gap (eV)", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }}
+    ],
+
+    "2. Device Structure (per sample)": [
+      {{ "Variable": "Device structure type", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Gate electrode material", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Gate insulator material", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Gate insulator process", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Gate insulator deposition temperature (°C)", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Gate insulator precursor/target composition", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Gate insulator thickness (nm)", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Substrate material", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Semiconductor (channel) thickness (nm)", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "S/D electrode material", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Channel length (µm)", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Channel width (µm)", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Passivation layer material", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Passivation layer thickness (nm)", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Passivation process", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }}
+    ],
+
+    "3. Deposition Process": [
+      {{ "Variable": "ALD/PEALD Precursor(s)", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Process Temperature (°C)", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Process Pressure (Torr)", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Oxygen partial pressure (Torr)", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Reactant Gas / Plasma", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Subcycle Ratio (if applicable)", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Precursor Dose/Feeding Time (sec)", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Plasma Power (W)", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Plasma Exposure Time (sec)", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+
+      {{ "Variable": "PVD/Sputtering Method", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Power (W)", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Target", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Gas type / flow (sccm)", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Process pressure (Torr)", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Substrate temperature (°C)", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }}
+    ],
+
+    "4. Post-Deposition Annealing": [
+      {{ "Variable": "Annealing time", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Annealing temperature (°C)", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Annealing atmosphere", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }}
+    ],
+
+    "5. Product Characteristics (per sample)": [
+      {{ "Variable": "Field-effect mobility (cm²/V·s)", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Threshold voltage (V)", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Subthreshold swing (V/dec)", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "On/off ratio (Ion/Ioff)", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Threshold voltage shift (V)", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }},
+      {{ "Variable": "Stability measurement condition(s)", "Predicted Value": "", "Rationale": "", "Ref IDs": [] }}
+    ]
+  }}
+}}

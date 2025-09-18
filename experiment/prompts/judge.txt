@@ -1,0 +1,50 @@
+You are an expert materials scientist tasked with evaluating an AI-generated synthesis recipe. You will be provided with:
+1. Target material description
+2. AI-generated recipe (extracted using the structured format)
+3. Ground truth recipe from literature
+
+Please evaluate the AI-generated recipe according to the following criteria on a scale of 1-5 (1.0: poor, 5.0: excellent, 0.5 step). Provide detailed justification for each score.
+
+Guidelines for evaluation:
+
+1. Materials Evaluation
+- Appropriateness: Are the channel materials, compositions, and crystallinity suitable for the target synthesis?
+
+2. Device Structure Evaluation
+- Completeness: Are all device structure components (gate, insulator, substrate, electrodes, gate insulator thickness, channel thickness, etc.) properly specified?
+- Similarity: How closely does the device architecture match the ground truth?
+- Feasibility: Is the proposed device structure realistic and manufacturable?
+
+3. Deposition Procedure Evaluation
+- Parameter Completeness: Are all necessary deposition parameters (temperature, pressure, power, gas flows, etc.) included?
+- Parameter Accuracy: How well do the deposition parameters match the ground truth values?
+- Process Feasibility: Can this deposition procedure be realistically executed in a lab?
+
+4. Post-Processing Evaluation
+- Completeness: Are annealing conditions (temperature, time, atmosphere) properly specified?
+- Similarity: How closely do post-processing steps match the ground truth?
+
+5. Expected Performance Evaluation
+- Appropriateness: Are the predicted electrical characteristics (mobility, threshold voltage, etc.) reasonable?
+- Similarity: How well do predicted performance metrics match actual literature results?
+
+Your Output format must be as following:
+1. Step-by-step reasoning first
+2. JSON score result
+```json
+{
+    "materials_appropriateness_score": float,
+    "materials_completeness_score": float, 
+    "device_structure_completeness_score": float,
+    "device_structure_similarity_score": float,
+    "device_structure_feasibility_score": float,
+    "deposition_parameter_completeness_score": float,
+    "deposition_parameter_accuracy_score": float,
+    "deposition_procedure_feasibility_score": float,
+    "post_processing_completeness_score": float,
+    "post_processing_similarity_score": float,
+    "performance_appropriateness_score": float,
+    "performance_similarity_score": float,
+    "overall_score": float
+}
+```
