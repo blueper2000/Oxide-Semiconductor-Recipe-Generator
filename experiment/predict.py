@@ -9,7 +9,29 @@ from tqdm import tqdm
 from . import openai_utils
 import numpy as np
 
+# experiment/predict.py (상단)
+import os
+import streamlit as st
+from datasets import load_dataset
 
+def _get_hf_token():
+    # Streamlit secrets 우선, 없으면 env 사용
+    return st.secrets.get(
+        "HF_TOKEN",
+        os.getenv("HUGGINGFACE_HUB_TOKEN", os.getenv("HF_TOKEN", ""))
+    )
+
+def _load_retrieval_set():
+    repo_id = "iknow-lab/oxidesc-recipe-embeddings"  # 정확한 레포 ID 확인
+    token = _get_hf_token()
+
+    # datasets 최신 버전: token 파라미터
+    try:
+        return load_dataset(repo_id, split="train", token=token)
+    except TypeError:
+        # 구버전 호환: use_auth_token 파라미터
+        return load_dataset(repo_id, split="train", use_auth_token=token)
+            
 class RecipePredictor:
         
 
