@@ -9,29 +9,7 @@ from tqdm import tqdm
 from . import openai_utils
 import numpy as np
 
-# experiment/predict.py (상단)
-import os
-import streamlit as st
-from datasets import load_dataset
 
-def _get_hf_token():
-    # Streamlit secrets 우선, 없으면 env 사용
-    return st.secrets.get(
-        "HF_TOKEN",
-        os.getenv("HUGGINGFACE_HUB_TOKEN", os.getenv("HF_TOKEN", ""))
-    )
-
-def _load_retrieval_set():
-    repo_id = "iknow-lab/oxidesc-recipe-embeddings"  # 정확한 레포 ID 확인
-    token = _get_hf_token()
-
-    # datasets 최신 버전: token 파라미터
-    try:
-        return load_dataset(repo_id, split="train", token=token)
-    except TypeError:
-        # 구버전 호환: use_auth_token 파라미터
-        return load_dataset(repo_id, split="train", use_auth_token=token)
-            
 class RecipePredictor:
         
 
@@ -204,10 +182,10 @@ class RAGRecipePredictor(RecipePredictor):
         
         # 데이터셋 이름 변경
         if retrieval_split == "all":
-            retrieval_set = _load_retrieval_set()
+            retrieval_set = load_dataset("iknow-lab/oxidesc-recipe-embeddings", token= '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')
             self.retrieval_set = concatenate_datasets(retrieval_set.values())
         else:
-            self.retrieval_set =_load_retrieval_set()
+            self.retrieval_set = load_dataset("iknow-lab/oxidesc-recipe-embeddings", split="train", token= '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')
         
         self.rag_topk = rag_topk
         # assert self.rag_topk > 0, "RAG topk must be greater than 0"
