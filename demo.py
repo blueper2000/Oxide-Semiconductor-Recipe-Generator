@@ -12,6 +12,26 @@ from litellm import embedding
 import litellm
 from pdf2recipe import pdf_bytelist_to_recipes
 from litellm import completion
+import os, streamlit as st
+os.environ.setdefault("HF_HOME", "/mount/data/hf")  # 캐시 경로 고정
+
+try:
+    from huggingface_hub import login, HfApi
+except Exception:
+    login = None
+    HfApi = None
+
+HF_TOKEN = st.secrets.get("HF_TOKEN", os.getenv("HF_TOKEN", os.getenv("HUGGINGFACE_HUB_TOKEN", "")))
+if HF_TOKEN:
+    os.environ["HF_TOKEN"] = HF_TOKEN
+    os.environ["HUGGINGFACE_HUB_TOKEN"] = HF_TOKEN
+    if login:
+        try:
+            login(token=HF_TOKEN, add_to_git_credential=False)
+        except Exception:
+            pass
+else:
+    st.error("HF_TOKEN이 비어 있습니다. Secrets에 HF_TOKEN을 넣어주세요")
 
 st.set_page_config(
     page_title="OxideSC Materials Synthesis Recipe Recommender",
