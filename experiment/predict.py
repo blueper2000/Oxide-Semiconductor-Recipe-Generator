@@ -8,8 +8,9 @@ import jsonlines
 from tqdm import tqdm
 from . import openai_utils
 import numpy as np
+import streamlit as st
 
-
+token = st.secrets.get("HF_TOKEN")
 class RecipePredictor:
         
 
@@ -182,10 +183,10 @@ class RAGRecipePredictor(RecipePredictor):
         
         # 데이터셋 이름 변경
         if retrieval_split == "all":
-            retrieval_set = load_dataset("iknow-lab/oxidesc-recipe-embeddings", token= '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')
+            retrieval_set = load_dataset("iknow-lab/oxidesc-recipe-embeddings", token= token)
             self.retrieval_set = concatenate_datasets(retrieval_set.values())
         else:
-            self.retrieval_set = load_dataset("iknow-lab/oxidesc-recipe-embeddings", split="train", token= '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')
+            self.retrieval_set = load_dataset("iknow-lab/oxidesc-recipe-embeddings", split="train", token= token)
         
         self.rag_topk = rag_topk
         # assert self.rag_topk > 0, "RAG topk must be greater than 0"
